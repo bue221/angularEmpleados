@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "empleadosangular-1cc8f": {
+      "hosting": {
+        "empleados": [
+          "empleadosangular-1cc8f"
+        ]
+      }
+    }
+  }
+}
