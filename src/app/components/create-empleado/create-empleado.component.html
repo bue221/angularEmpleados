@@ -3,7 +3,12 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card text-center">
         <div class="card-body">
-          <h5>Agregar Empleado</h5>
+          <h5>
+            {{ title }}
+            <div *ngIf="loading" class="spinner-grow float-rigth" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </h5>
           <span
             *ngIf="submited && createEmpleado.invalid"
             class="badge bg-danger"

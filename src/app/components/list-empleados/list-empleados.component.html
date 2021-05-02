@@ -7,7 +7,19 @@
           Agregar
         </button>
       </div>
-      <table class="table mt-5">
+      <h5 *ngIf="empleados.length == 0" class="mt-5">
+        No hay empleados registrados
+      </h5>
+      <div class="my-5">
+        <input
+          type="text"
+          class="form-control mb-4"
+          placeholder="Search"
+          [(ngModel)]="filter"
+          id="listSearch"
+        />
+      </div>
+      <table class="table mt-5" *ngIf="empleados.length > 0">
         <thead>
           <tr>
             <th scope="col">Nombre</th>
@@ -18,30 +30,24 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Tomas</td>
-            <td>Perez</td>
-            <td>393939202</td>
-            <td>2500000</td>
+          <tr *ngFor="let i of empleados | filter: filter">
+            <td>{{ i.nombre }}</td>
+            <td>{{ i.apellido }}</td>
+            <td>{{ i.documento }}</td>
+            <td>{{ i.salario | currency }}</td>
             <td class="d-flex align-items-center">
-              <span class="material-icons-outlined mr-3 text-info">
+              <span
+                class="material-icons-outlined mr-3 text-info"
+                [routerLink]="['/edit', i.id]"
+              >
                 rate_review </span
-              ><span class="material-icons-outlined text-danger"> delete </span>
+              ><span
+                class="material-icons-outlined text-danger"
+                (click)="eliminarEmpleado(i.id)"
+              >
+                delete
+              </span>
             </td>
-          </tr>
-          <tr>
-            <td>Tomas</td>
-            <td>Perez</td>
-            <td>393939202</td>
-            <td>2500000</td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Tomas</td>
-            <td>Perez</td>
-            <td>393939202</td>
-            <td>2500000</td>
-            <td></td>
           </tr>
         </tbody>
       </table>
